@@ -7,7 +7,7 @@ define('TODO_START', microtime(true));
 require('../vendor/autoload.php');
 
 // Create a new app instance
-$app = new \App\Application(__DIR__.'/../');
+$app = new \App\Base\Application(__DIR__.'/../');
 
 // Run the app
 $app->run();

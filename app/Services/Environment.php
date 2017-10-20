@@ -2,14 +2,15 @@
 
 namespace App\Services;
 
-use Symfony\Component\Dotenv\Dotenv;
+use App\Base\Service;
+use Dotenv\Dotenv;
 
 class Environment extends Service
 {
     public function boot() {
-        $environment = new Dotenv();
-        $environment->load($this->app->path.'/.env');
+        $dotenv = new Dotenv($this->app->path);
+        $dotenv->load();
 
-        $this->app->register('environment', $environment);
+        $this->app->bind('env', $dotenv);
     }
 }

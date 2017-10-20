@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Base;
 
-class Service
+abstract class Service
 {
     public function __construct($app)
     {
         $this->app = $app;
     }
+
+    abstract public function boot();
 }
