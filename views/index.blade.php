@@ -44,10 +44,7 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <h2><?= e(app()->request->get('name')); ?></h2>
-                <h4><?= e(app()->request->get('email')); ?></h4>
-                <h4><?= e(app()->request->get('address')); ?></h4>
-                <h4><?= e(app()->request->get('country')); ?></h4>
+
             </div>
         </div>
     </div>
