@@ -6,6 +6,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return "Hi!";
+        return $this->view('index');
     }
 }
