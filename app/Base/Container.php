@@ -2,20 +2,37 @@
 
 namespace App\Base;
 
+/**
+ * The application's service container.
+ * @package App\Base
+ */
 class Container
 {
+    /**
+     * Array of services already loaded into the applications.
+     * These are available to be resolved with resolve().
+     * @var array
+     */
     protected $binds;
 
+    /**
+     * Array of recipes for certain services.
+     * These are used to construct a complex object with dependencies on the fly.
+     * @var array<Callable>
+     */
     protected $recipes;
 
 
     /**
-     * All the application's services.
+     * All the application's service classes.
+     * These classes are loaded into the application for later use.
+     * They provide additional functionality and are easily added or removed.
      */
     protected $services = [];
 
     /**
-     * Bootstrap the application.
+     * Load all services from the services array into the application.
+     * This method calls the boot() method on all service classes.
      */
     public function boot()
     {
@@ -26,7 +43,7 @@ class Container
     }
 
     /**
-     *  Register a service.
+     *  Registers a service class into the application by string key.
      */
     public function bind($identifier, $service)
     {
@@ -34,7 +51,7 @@ class Container
     }
 
     /**
-     *  Resolve a service.
+     *  Resolve a service by key from the registered services.
      */
     public function resolve($identifier)
     {
@@ -42,7 +59,7 @@ class Container
     }
 
     /**
-     *  Add a recipe.
+     *  Add a recipe to the application container.
      */
     public function recipe($identifier, $recipe)
     {
@@ -50,7 +67,7 @@ class Container
     }
 
     /**
-     *  Create an object according to the supplied recipe.
+     *  Create an object according to the registered recipe.
      */
     public function make($identifier)
     {

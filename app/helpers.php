@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * These helpers allow for accessing core services and features in
+ * every corner of the application.
+ */
+
 if (!function_exists('app')) {
     function app($service = null) {
         global $app;
@@ -20,7 +25,7 @@ if (!function_exists('e')) {
 
 if (!function_exists('env')) {
     function env($key, $default = null) {
-        return getenv($key) ?? $default;
+        return getenv($key) ?? $default; // getenv() is registered by php-dot-env
     }
 }
 
