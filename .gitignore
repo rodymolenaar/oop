@@ -2,3 +2,5 @@
 /.idea
 .env
 cache/views/*
+vendor/composer/autoload_classmap.php
+vendor/autoload.php
