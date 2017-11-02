@@ -2,6 +2,8 @@
 
 namespace App\Base;
 
+use Throwable;
+
 /**
  * The application's service container.
  * @package App\Base
@@ -55,7 +57,21 @@ class Container
      */
     public function resolve($identifier)
     {
-        return $this->binds[$identifier];
+        if (isset($this->binds[$identifier])) {
+            return $this->binds[$identifier];
+        }
+
+        try {
+
+            $service = new $identifier;
+
+            return $service;
+
+        } catch (Throwable $e) {
+
+            return null;
+
+        }
     }
 
     /**

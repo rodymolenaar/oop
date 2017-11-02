@@ -26,8 +26,6 @@ class Application extends Container
      */
     protected $request;
 
-    protected $response;
-
 
     /**
      * All the application's service classes.
@@ -38,10 +36,11 @@ class Application extends Container
         \App\Services\ExceptionHandler::class,
         \App\Services\Environment::class,
         \App\Services\Database::class,
-        \App\Services\Session\SessionService::class,
+        \App\Services\Session::class,
         \App\Services\Router\RouterService::class,
         \App\Services\View::class,
         \App\Services\Auth\AuthService::class,
+        \App\Services\Middleware\MiddlewareService::class,
     ];
 
     /**
@@ -64,6 +63,8 @@ class Application extends Container
         $response = $this->handle();
 
         $response->send();
+
+        app('middleware')->terminate($this->request);
     }
 
     /**
@@ -73,7 +74,7 @@ class Application extends Container
      */
     protected function handle(): Response
     {
-        $this->dispatchToMiddleware($this->request);
+        $this->dispatchToMiddleware();
 
         $router = $this->resolve('router'); // Here the router is retrieved from the service container.
 
@@ -83,9 +84,9 @@ class Application extends Container
     /**
      * @param Request $request
      */
-    protected function dispatchToMiddleware(Request $request)
+    protected function dispatchToMiddleware()
     {
-        MiddlewareManager::run($request);
+        $this->request = app('middleware')->run($this->request);
     }
 
     /**
@@ -102,6 +103,11 @@ class Application extends Container
         }
 
         throw new HttpException($code, $message, null, $headers);
+    }
+
+    public function path($path)
+    {
+        return realpath($this->path.$path);
     }
 
     /**

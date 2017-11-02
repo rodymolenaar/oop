@@ -16,3 +16,9 @@ if (! function_exists('app')) {
         return $app;
     }
 }
+
+if (! function_exists('csrf_token')) {
+    function csrf_token() {
+        return app('session')->get('token');
+    }
+}

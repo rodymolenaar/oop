@@ -28,16 +28,16 @@ class Auth
 
     protected $passwordAlgorithm = PASSWORD_BCRYPT;
 
-    public function __construct(PDO $database, Session $session, UserRepository $repository)
+    public function __construct()
     {
-        $this->database = $database;
-        $this->session = $session->bag('auth');
-        $this->repository = $repository;
+        $this->database = app()->resolve('db');
+        $this->session = app()->resolve('session');
+        $this->repository = app()->resolve(UserRepository::class);
     }
 
     public function check(): bool
     {
-        return $this->user() instanceof User ? true : false;
+        return $this->user() instanceof User;
     }
 
     public function authenticate(string $username, string $password)
@@ -72,7 +72,7 @@ class Auth
             $this->user = $this->repository->find($user);
         }
 
-        $this->session->set('id', $this->user->id);
+        $this->session->set('auth/id', $this->user->id);
     }
 
     public function user()
@@ -81,7 +81,7 @@ class Auth
             return $this->user;
         }
 
-        $this->user = $this->repository->find($this->session->get('id'));
+        $this->user = $this->repository->find($this->session->get('auth/id'));
 
         return $this->user;
     }

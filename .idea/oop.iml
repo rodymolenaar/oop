@@ -6,7 +6,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/altorouter/altorouter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/duncan3dc/blade" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/contracts" />
@@ -14,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/support" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/view" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jenssegers/blade" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
@@ -26,6 +26,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/valitron" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -35,7 +36,6 @@
           <root url="file://$MODULE_DIR$/vendor/altorouter/altorouter" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
-          <root url="file://$MODULE_DIR$/vendor/duncan3dc/blade" />
           <root url="file://$MODULE_DIR$/vendor/filp/whoops" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/container" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/contracts" />
@@ -43,6 +43,7 @@
           <root url="file://$MODULE_DIR$/vendor/illuminate/filesystem" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/support" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/view" />
+          <root url="file://$MODULE_DIR$/vendor/jenssegers/blade" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
           <root url="file://$MODULE_DIR$/vendor/psr/container" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
@@ -55,12 +56,12 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
           <root url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
+          <root url="file://$MODULE_DIR$/vendor/vlucas/valitron" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/altorouter/altorouter" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
-          <root url="file://$MODULE_DIR$/vendor/duncan3dc/blade" />
           <root url="file://$MODULE_DIR$/vendor/filp/whoops" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/container" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/contracts" />
@@ -68,6 +69,7 @@
           <root url="file://$MODULE_DIR$/vendor/illuminate/filesystem" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/support" />
           <root url="file://$MODULE_DIR$/vendor/illuminate/view" />
+          <root url="file://$MODULE_DIR$/vendor/jenssegers/blade" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
           <root url="file://$MODULE_DIR$/vendor/psr/container" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
@@ -80,6 +82,7 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
           <root url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
+          <root url="file://$MODULE_DIR$/vendor/vlucas/valitron" />
         </SOURCES>
       </library>
     </orderEntry>

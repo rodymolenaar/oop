@@ -110,7 +110,21 @@ class Router
             $controller = $this->match['target'][0];
             $method = $this->match['target'][1];
 
-            return call_user_func_array([new $controller, $method], $this->match['params']);
+            $controllerClass = new $controller;
+
+            if (isset($controllerClass->middleware) && is_array($controllerClass->middleware)) {
+                foreach ($controllerClass->middleware as $middleware => $methods) {
+                    if (in_array($method, $methods)) {
+                        $middleware = new $middleware();
+
+                        if (method_exists($middleware, 'handle')) {
+                            $middleware->handle(app()->request(), function () {});
+                        }
+                    }
+                }
+            }
+
+            return call_user_func_array([new $controllerClass, $method], $this->match['params']);
         }
 
         throw new NotFoundHttpException;
