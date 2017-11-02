@@ -2,8 +2,11 @@
 
 namespace App\Base;
 
+use App\Middleware\MiddlewareManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Application class
@@ -23,6 +26,8 @@ class Application extends Container
      */
     protected $request;
 
+    protected $response;
+
 
     /**
      * All the application's service classes.
@@ -36,6 +41,7 @@ class Application extends Container
         \App\Services\Session\SessionService::class,
         \App\Services\Router\RouterService::class,
         \App\Services\View::class,
+        \App\Services\Auth\AuthService::class,
     ];
 
     /**
@@ -67,9 +73,35 @@ class Application extends Container
      */
     protected function handle(): Response
     {
+        $this->dispatchToMiddleware($this->request);
+
         $router = $this->resolve('router'); // Here the router is retrieved from the service container.
 
         return $router->dispatch(); // Here the router takes over and returns a Response object.
+    }
+
+    /**
+     * @param Request $request
+     */
+    protected function dispatchToMiddleware(Request $request)
+    {
+        MiddlewareManager::run($request);
+    }
+
+    /**
+     * Stops the application process and sends an error response.
+     * @param integer $code
+     * @param string $message
+     * @param array $headers
+     * @return void
+     */
+    public function abort($code, $message = '', array $headers = [])
+    {
+        if ($code == 404) {
+            throw new NotFoundHttpException($message);
+        }
+
+        throw new HttpException($code, $message, null, $headers);
     }
 
     /**

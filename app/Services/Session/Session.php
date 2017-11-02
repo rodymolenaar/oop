@@ -11,7 +11,7 @@ class Session
     public function __construct()
     {
         $this->flashBag = new FlashBag();
-        $this->bags['app'] = new SessionBag('app');
+        $this->applicationBag = new SessionBag('app');
         $this->generateCsrf();
     }
 
@@ -23,7 +23,7 @@ class Session
     public function bag($bag = null)
     {
         if (empty($bag)) {
-            return $this->bags['app'];
+            return $this->applicationBag;
         }
 
         if (isset($this->bags[$bag])) {

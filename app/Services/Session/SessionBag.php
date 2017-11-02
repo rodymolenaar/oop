@@ -9,6 +9,10 @@ class SessionBag
     public function __construct($namespace)
     {
         $this->namespace = $namespace;
+
+        if (! isset($_SESSION[$this->namespace])) {
+            $_SESSION[$this->namespace] = [];
+        }
     }
 
     public function set($key, $value)
@@ -20,16 +24,21 @@ class SessionBag
 
     public function has($key)
     {
-        return isset($_SESSION[$this->namespace][$key]) ? true : false;
+        return isset($_SESSION[$this->namespace][$key]);
     }
 
     public function get($key, $default = null)
     {
-        if ($value = $_SESSION[$this->namespace][$key]) {
-            return $value;
+        if ($this->has($key)) {
+            return $_SESSION[$this->namespace][$key];
         }
 
         return $default;
+    }
+
+    public function all()
+    {
+        return $_SESSION[$this->namespace];
     }
 
     public function clear()
