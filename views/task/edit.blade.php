@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Edit task</h1>
 
-        <form action="/tasks/{{ $task->id }}" method="POST">
+        <form action="oop/tasks/{{ $task->id }}" method="POST" enctype="multipart/form-data">
             @include('task.form')
         </form>
     </div>

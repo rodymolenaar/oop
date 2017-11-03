@@ -85,4 +85,10 @@ class Auth
 
         return $this->user;
     }
+
+    public function reset()
+    {
+        $this->session->remove('auth/id');
+        $this->user = null;
+    }
 }

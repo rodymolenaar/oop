@@ -34,4 +34,13 @@ class LoginController extends Controller
 
         Redirect::back();
     }
+
+    public function logout()
+    {
+        app('auth')->reset();
+
+        Redirect::to('/');
+
+
+    }
 }

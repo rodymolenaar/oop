@@ -31,6 +31,8 @@ class Router
     public function __construct()
     {
         $this->instance = new AltoRouter();
+
+        $this->instance->setBasePath(env('APP_BASEPATH', ''));
     }
 
     /**

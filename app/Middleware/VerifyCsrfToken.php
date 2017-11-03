@@ -25,6 +25,10 @@ class VerifyCsrfToken
 
     protected function validateToken(Request $request)
     {
+        if ($this->session->has('token') && (time() - $this->session->get('token_time')) < 5000) {
+            return;
+        }
+
         if ($request->get('csrf_token') !== $this->session->get('token')) {
             throw new HttpException(500, 'CSRF token does not match');
         }
