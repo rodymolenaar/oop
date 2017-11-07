@@ -16,9 +16,12 @@ class Controller
 
     public function view($view, $attributes = [])
     {
-        $view = app('view')->make($view, $attributes);
+        $attributes['errors'] = app('session')->getFlashBag()->has('errors') ? app('session')->getFlashBag()->get('errors') : [];
+        $attributes['csrf_token'] = csrf_token();
 
-        return new Response($view->render(), 200, [
+        $view = app('view')->render(str_replace('.', '/', $view).'.twig', $attributes);
+
+        return new Response($view, 200, [
             'Content-Type' => 'text/html'
         ]);
     }

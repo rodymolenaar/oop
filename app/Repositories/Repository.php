@@ -53,7 +53,6 @@ abstract class Repository
 
     public function collection($source)
     {
-        dd($source);
         if (is_array($source) && count($source) > 1) {
             return array_map(function ($attributes) {
                 return $this->model($attributes);

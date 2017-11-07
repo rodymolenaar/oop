@@ -10,7 +10,7 @@ class RegisterController extends Controller
     use ValidationController;
 
     public $middleware = [
-        \App\Middleware\CheckIfGuest::class => ['showLoginForm', 'login']
+        \App\Middleware\CheckIfGuest::class => ['showRegisterForm', 'register']
     ];
 
     public function showRegisterForm()
@@ -26,6 +26,16 @@ class RegisterController extends Controller
                 ['password', 'password_confirmation']
             ]
         ]);
+
+        $query = app('db')->prepare("SELECT id FROM users WHERE `username` = ?");
+        $query->execute([
+            $data['username'],
+        ]);
+
+        if ($query->rowCount() > 0) {
+            app('session')->getFlashBag()->add('errors', ['username' => ['Username already in use.']]);
+            Redirect::back();
+        }
 
         $query = app('db')->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
         $query->execute([

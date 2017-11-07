@@ -22,3 +22,9 @@ if (! function_exists('csrf_token')) {
         return app('session')->get('token');
     }
 }
+
+if (! function_exists('url')) {
+    function url($uri) {
+        return env('APP_BASEPATH', '') . $uri;
+    }
+}

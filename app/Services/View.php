@@ -4,18 +4,22 @@ namespace App\Services;
 
 use App\Base\Service;
 use Jenssegers\Blade\Blade;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 
 class View extends Service
 {
     /**
      * A Blade instance is loaded into the application to allow templating.
      */
-    public function boot() {
+    public function boot()
+    {
 
-        $blade = new Blade($this->app->path('views'), $this->app->path('cache/views'));
+        $loader = new Twig_Loader_Filesystem($this->app->path('views'));
+        $twig = new Twig_Environment($loader, [
+            //
+        ]);
 
-        $blade->share('errors', app('session')->getFlashBag()->get('errors'));
-
-        $this->app->bind('view', $blade);
+        $this->app->bind('view', $twig);
     }
 }

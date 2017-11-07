@@ -36,7 +36,7 @@ class Application extends Container
         \App\Services\ExceptionHandler::class,
         \App\Services\Environment::class,
         \App\Services\Database::class,
-        \App\Services\Session::class,
+        \App\Services\Session\SessionService::class,
         \App\Services\Router\RouterService::class,
         \App\Services\View::class,
         \App\Services\Auth\AuthService::class,
