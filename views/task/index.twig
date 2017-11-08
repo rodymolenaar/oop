@@ -2,6 +2,9 @@
 
 {% block content %}
     <div class="container">
+        <div style="margin-top: 25px;">
+            <a href="{{ '/logout'|url }}" class="btn btn-danger">Sign out</a>
+        </div>
         <form action="{{ '/tasks/create'|url }}" method="POST" enctype="multipart/form-data" style="margin-top: 25px;">
             {% include 'task/form.twig' %}
         </form>
