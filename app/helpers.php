@@ -28,3 +28,9 @@ if (! function_exists('url')) {
         return env('APP_BASEPATH', '') . $uri;
     }
 }
+
+if (! function_exists('env')) {
+    function env(...$args) {
+        return getenv(...$args);
+    }
+}

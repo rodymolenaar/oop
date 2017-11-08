@@ -40,7 +40,7 @@
                                 <button type="submit" class="btn btn-info">Mark as done</button>
                             {% endif %}
                         </form>
-                        <a href="{{ "/tasks/"~task.id|url }}}" class="btn btn-primary">Edit</a>
+                        <a href="{{ "/tasks/"~task.id|url }}" class="btn btn-primary">Edit</a>
                         <form action="{{ "/tasks/"~task.id~"/delete"|url }}" method="POST" style="display: inline-block;">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                             <button type="submit" class="btn btn-danger">Delete</button>

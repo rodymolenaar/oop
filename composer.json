@@ -7,8 +7,6 @@
         "vlucas/phpdotenv": "^2.4",
         "altorouter/altorouter": "^1.2",
         "symfony/http-kernel": "^3.3",
-        "illuminate/support": "^5.5",
-        "jenssegers/blade": "^1.1",
         "vlucas/valitron": "^1.4",
         "twig/twig": "^2.4"
     },
