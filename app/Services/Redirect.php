@@ -8,11 +8,7 @@ class Redirect
 {
     public static function to($url)
     {
-        if (env('APP_BASEPATH')) {
-            $url = env('APP_BASEPATH').$url;
-        }
-
-        return (new RedirectResponse($url))->send();
+        return (new RedirectResponse(url($url)))->send();
     }
 
     public static function back()

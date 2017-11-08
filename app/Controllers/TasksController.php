@@ -22,8 +22,6 @@ class TasksController extends Controller
     {
         $user = app('auth')->user()->id;
 
-        dd($user);
-
         $query = app('db')->prepare("SELECT * FROM tasks WHERE `user_id` = {$user} ORDER BY `done`, `created_at` DESC");
         $query->execute();
 

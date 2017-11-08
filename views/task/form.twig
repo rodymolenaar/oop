@@ -15,7 +15,7 @@
         <label for="attachment">Attachment</label>
         {% if task.file %}
             <div class="form-group">
-                <a href="/tasks/{{ task.id }}/attachment">{{ task.file_name }}</a>
+                <a href="{{ "/tasks/"~task.id~"/attachment"|url }}">{{ task.file_name }}</a>
             </div>
         {% endif %}
         <input type="file" name="attachment">

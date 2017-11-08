@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Base\Service;
 use Jenssegers\Blade\Blade;
 use Twig_Environment;
+use Twig_Filter;
 use Twig_Loader_Filesystem;
 
 class View extends Service
@@ -19,6 +20,10 @@ class View extends Service
         $twig = new Twig_Environment($loader, [
             //
         ]);
+
+        $twig->addFilter(new Twig_Filter('url', function ($uri) {
+            return url($uri);
+        }));
 
         $this->app->bind('view', $twig);
     }
