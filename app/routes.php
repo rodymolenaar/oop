@@ -6,6 +6,11 @@
 
 use App\Services\Redirect;
 
+
+$router->get('', function () {
+    Redirect::to('/tasks');
+});
+
 $router->get('/', function () {
     Redirect::to('/tasks');
 });

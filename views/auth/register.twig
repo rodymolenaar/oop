@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container" style="margin-top: 20vh;">
         {% include 'errors.twig' %}
-        <form action="/register" method="POST">
+        <form action="{{ '/register'|url }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
             <div class="form-group">
                 <input type="text" name="username" placeholder="Username" class="form-control">
