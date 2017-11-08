@@ -14,6 +14,12 @@ class Controller
         $this->request = app()->request();
     }
 
+    /**
+     * Return a view response.
+     * @param $view
+     * @param array $attributes
+     * @return Response
+     */
     public function view($view, $attributes = [])
     {
         $attributes['errors'] = app('session')->getFlashBag()->has('errors') ? app('session')->getFlashBag()->get('errors') : [];
@@ -26,6 +32,11 @@ class Controller
         ]);
     }
 
+    /**
+     * Return a redirect response.
+     * @param null $url
+     * @return $this|Redirect
+     */
     public function redirect($url = null)
     {
         $redirect = new Redirect();

@@ -13,11 +13,19 @@ class MiddlewareManager
         \App\Middleware\VerifyCsrfToken::class,
     ];
 
+    /**
+     * MiddlewareManager constructor.
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $this->request = $request;
     }
 
+    /**
+     * Run all middleware's handle methods.
+     * @return Request
+     */
     public function run()
     {
         foreach ($this->middleware as $middleware) {
@@ -33,6 +41,9 @@ class MiddlewareManager
         return $this->request;
     }
 
+    /**
+     * Run all middleware's terminate methods.
+     */
     public function terminate()
     {
         foreach ($this->middleware as $middleware) {
@@ -44,6 +55,11 @@ class MiddlewareManager
         }
     }
 
+    /**
+     * Instantiate a middleware object.
+     * @param $middleware
+     * @return mixed
+     */
     public function bootstrapMiddleware($middleware)
     {
         return new $middleware();

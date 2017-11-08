@@ -12,8 +12,12 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TasksController extends Controller
 {
-    use ValidationController;
+    use ValidationController; // Allow validating
 
+    /**
+     * All middlewares for this controller, is only run on given methods.
+     * @var array
+     */
     public $middleware = [
         \App\Middleware\CheckIfUser::class => ['index', 'show', 'edit', 'update', 'create', 'store', 'delete']
     ];

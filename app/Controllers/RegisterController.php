@@ -7,17 +7,28 @@ use App\Traits\ValidationController;
 
 class RegisterController extends Controller
 {
-    use ValidationController;
+    use ValidationController; // Allow validating
 
+    /**
+     * All middlewares for this controller, is only run on given methods.
+     * @var array
+     */
     public $middleware = [
         \App\Middleware\CheckIfGuest::class => ['showRegisterForm', 'register']
     ];
 
+    /**
+     * Show user the register form.
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showRegisterForm()
     {
         return $this->view('auth.register');
     }
 
+    /**
+     * Perform the register action, and log in the user if successful.
+     */
     public function register()
     {
         $data = $this->validate($this->request, [

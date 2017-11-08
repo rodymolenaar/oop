@@ -8,6 +8,12 @@ use Valitron\Validator;
 
 trait ValidationController
 {
+    /**
+     * Validate the given request with the given rules.
+     * @param Request $request
+     * @param array $rules
+     * @return array
+     */
     public function validate(Request $request, array $rules = [])
     {
         if ($request->isMethod('GET')) {

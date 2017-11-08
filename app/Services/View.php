@@ -11,7 +11,7 @@ use Twig_Loader_Filesystem;
 class View extends Service
 {
     /**
-     * A Blade instance is loaded into the application to allow templating.
+     * A Twig instance is loaded into the application to allow templating.
      */
     public function boot()
     {
@@ -21,6 +21,7 @@ class View extends Service
             //
         ]);
 
+        // This filter allows the app to live in a subdirectory easily.
         $twig->addFilter(new Twig_Filter('url', function ($uri) {
             return url($uri);
         }));

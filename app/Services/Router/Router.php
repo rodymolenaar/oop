@@ -114,6 +114,7 @@ class Router
 
             $controllerClass = new $controller;
 
+            // Call class based middlewares
             if (isset($controllerClass->middleware) && is_array($controllerClass->middleware)) {
                 foreach ($controllerClass->middleware as $middleware => $methods) {
                     if (in_array($method, $methods)) {

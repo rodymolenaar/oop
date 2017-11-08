@@ -12,6 +12,9 @@ use Throwable;
 
 class Auth
 {
+    /**
+     * @var mixed|null
+     */
     protected $database;
 
     protected $session;
@@ -28,6 +31,9 @@ class Auth
 
     protected $passwordAlgorithm = PASSWORD_BCRYPT;
 
+    /**
+     * Auth constructor. Resolve necessary services from the container.
+     */
     public function __construct()
     {
         $this->database = app()->resolve('db');
@@ -35,11 +41,21 @@ class Auth
         $this->repository = app()->resolve(UserRepository::class);
     }
 
+    /**
+     * Check if the user is logged in.
+     * @return bool
+     */
     public function check(): bool
     {
         return $this->user() instanceof User;
     }
 
+    /**
+     * Authenticate the user by username and password and sign in if successful.
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function authenticate(string $username, string $password)
     {
         $user = $this->repository->findBy($this->usernameField, $username);
@@ -55,6 +71,12 @@ class Auth
         return $this->user;
     }
 
+    /**
+     * Verify a user's password.
+     * @param User $user
+     * @param string $password
+     * @return bool
+     */
     public function verify(User $user, string $password): bool
     {
         if (password_verify($password, $user->password)) {
@@ -64,6 +86,10 @@ class Auth
         return false;
     }
 
+    /**
+     * Set the given user to be remembered in Session.
+     * @param $user
+     */
     public function setUser($user): void
     {
         if ($user instanceof User) {
@@ -75,6 +101,10 @@ class Auth
         $this->session->set('auth/id', $this->user->id);
     }
 
+    /**
+     * Retrieve the saved user or retrieve the user from the database.
+     * @return User
+     */
     public function user()
     {
         if ($this->user instanceof User) {
@@ -86,6 +116,9 @@ class Auth
         return $this->user;
     }
 
+    /**
+     * Reset the authentication service.
+     */
     public function reset()
     {
         $this->session->remove('auth/id');
