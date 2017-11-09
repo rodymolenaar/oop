@@ -5,6 +5,8 @@
  * every corner of the application.
  */
 
+use Illuminate\Support\Str;
+
 if (! function_exists('app')) {
     function app($service = null) {
         global $app;
@@ -25,6 +27,10 @@ if (! function_exists('csrf_token')) {
 
 if (! function_exists('url')) {
     function url($uri) {
+        if (Str::startsWith($uri, env('APP_BASEPATH'))) {
+            return $uri;
+        }
+
         return env('APP_BASEPATH', '') . $uri;
     }
 }

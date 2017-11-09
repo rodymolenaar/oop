@@ -30,12 +30,12 @@
                         {% if task.file %}
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label>Attachment</label>
-                                    <a href="{{ "/tasks/"~task.id~"/attachment"|url }}" style="display: block;">{{ task.file_name }}</a>
+                                    <a href="{{ "/tasks/#{task.id}/attachment"|url }}" style="display: block;">{{ task.file_name }}</a>
                                 </div>
                         {% endif %}
                     </div>
                     <div class="panel-footer">
-                        <form action="{{ "/tasks/"~task.id~"/done"|url }}" method="POST" style="display: inline-block;">
+                        <form action="{{ "/tasks/#{task.id}/done"|url }}" method="POST" style="display: inline-block;">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                             {% if task.done %}
                                 <button type="submit" class="btn btn-info">Mark as todo</button>
@@ -43,8 +43,8 @@
                                 <button type="submit" class="btn btn-info">Mark as done</button>
                             {% endif %}
                         </form>
-                        <a href="{{ "/tasks/"~task.id|url }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ "/tasks/"~task.id~"/delete"|url }}" method="POST" style="display: inline-block;">
+                        <a href="{{ "/tasks/#{task.id}"|url }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ "/tasks/#{task.id}/delete"|url }}" method="POST" style="display: inline-block;">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
